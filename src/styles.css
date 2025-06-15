@@ -7,7 +7,7 @@
   background-size: cover;
   background-position: center;
   /* Placeholder pour l'image de fond - REMPLACEZ CECI */
-  background-image: url("https://source.unsplash.com/random/1920x1080/?abstract,art,creative");
+  background-image: url("/assets/images/bg_drawing.jpg");
 }
 
 .hero-overlay {
