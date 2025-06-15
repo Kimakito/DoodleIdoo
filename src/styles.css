@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Styles additionnels pour le header (si une image de BG ne suffit pas pour l'effet) */
+.hero-section {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  /* Placeholder pour l'image de fond - REMPLACEZ CECI */
+  background-image: url("https://source.unsplash.com/random/1920x1080/?abstract,art,creative");
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Ombre légère pour le texte */
+}
+
+/* Effet de défilement parallax léger pour le header (optionnel) */
+@media (min-width: 768px) {
+  .parallax-bg {
+    background-attachment: fixed;
+  }
+}
