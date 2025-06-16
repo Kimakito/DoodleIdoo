@@ -1,5 +1,5 @@
 [build]  
-  command = "CI=1 npm run build"
+  command = "npm install && CI=1 npm run build"
   functions = "netlify/functions"
   publish = "dist"
 
