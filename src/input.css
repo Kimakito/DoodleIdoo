@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 /* Styles additionnels pour le header (si une image de BG ne suffit pas pour l'effet) */
 .hero-section {
   position: relative;
