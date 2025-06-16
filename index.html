@@ -26,7 +26,7 @@
 <div id="instagram-feed"></div>
 
 <script>
-  fetch('./src/getInstagram.js')
+  fetch('/.netlify/functions/getInstagram')
     .then(res => res.json())
     .then(data => {
       const container = document.getElementById('instagram-feed');
@@ -42,12 +42,13 @@
     .catch(err => console.error("Erreur API Instagram :", err));
 </script>
 
+
     <section id="portfolio" class="py-24 bg-purple-primary text-center">
         <div class="max-w-6xl mx-auto px-6">
             <h2 class="text-5xl font-bold mb-16 text-yellow-accent">Mes Dernières Créations & Mon Univers</h2>
 
             <div class="mb-16 flex justify-center space-x-8">
-                <a href="https://www.instagram.com/votre_instagram" target="_blank" rel="noopener noreferrer" class="text-gray-light hover:text-white transition-colors duration-300 transform hover:scale-110">
+                <a href="https://www.instagram.com/doodleidoo_73" target="_blank" rel="noopener noreferrer" class="text-gray-light hover:text-white transition-colors duration-300 transform hover:scale-110">
                     <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.002 3.797.013 3.438.04 4.48.272 5.21.579.695.295 1.18.66 1.638 1.118.458.458.823.943 1.118 1.638.307.73.538 1.772.579 5.21.013 1.013.015 1.376.015 3.797s-.002 2.784-.013 3.797c-.04 3.438-.272 4.48-.579 5.21-.295.695-.66 1.18-1.118 1.638-.458.458-.943.823-1.638 1.118-.73.307-1.772.538-5.21.579-1.013.013-1.376.015-3.797.015s-2.784-.002-3.797-.013c-3.438-.04-4.48-.272-5.21-.579-.695-.295-1.18-.66-1.638-1.118-.458-.458-.823-.943-1.118-1.638-.307-.73-.538-1.772-.579-5.21-.013-1.013-.015-1.376-.015-3.797s.002-2.784.013-3.797c.04-3.438.272-4.48.579-5.21.295-.695.66-1.18 1.118-1.638.458-.458.943-.823 1.638-1.118.73-.307 1.772-.538 5.21-.579 1.013-.013 1.376-.015 3.797-.015zM12 4.755c-2.404 0-2.688.009-3.64.022-3.23.038-4.303.245-4.999.535-.459.19-.798.371-1.037.61-.24.239-.421.579-.61.999-.29 1.488-.501 2.378-.535 4.999-.013.952-.022 1.236-.022 3.64s.009 2.688.022 3.64c.038 3.23.245 4.303.535 4.999.19.459.371.798.61 1.037.239.24.579.421.999.61 1.488.29 2.378.501 4.999.535.952.013 1.236.022 3.64.022s2.688-.009 3.64-.022c3.23-.038 4.303-.245 4.999-.535.459-.19.798-.371 1.037-.61.24-.239.421-.579.61-.999.29-1.488.501-2.378.535-4.999.013-.952.022-1.236.022-3.64s-.009-2.688-.022-3.64c-.038-3.23-.245-4.303-.535-4.999-.19-.459-.371-.798-.61-1.037-.239-.24-.579-.421-.999-.61-1.488-.29-2.378-.501-4.999-.535-1.013-.013-1.376-.015-3.797-.015zm-.218 5.751c-.966 0-1.6.438-1.92 1.34-1.258 3.523.518 7.394 4.093 8.653 1.294.464 2.476.324 2.87-.245.39-.569.25-1.745-.04-2.812-.29-1.066-.757-1.442-1.285-1.442-.81 0-1.042.483-1.295 1.15-.313.842-.423 1.107-.803 1.107-.154 0-.31-.07-.406-.164-.26-.25-.333-.615-.333-1.127 0-.512.073-.877.333-1.127.096-.094.252-.164.406-.164.38 0 .49.265.803 1.107.253.667.485 1.15.295 1.15-.24 0-.585-.68-.898-1.52-.314-.84-.57-1.15-.89-.86-.32.29-.02 1.02.26 1.77.288.75.463 1.15.952 1.15.545 0 .848-.36 1.284-1.44.436-1.08.668-2.28.668-3.55 0-1.27-.232-2.47-.668-3.55-.436-1.08-.739-1.44-1.284-1.44-.489 0-.664.4-.952 1.15-.288.75-.585 1.48-.898 1.52-.29.04-.02-.69.26-1.77.288-.75.463-1.15.952 1.15.545 0 .848-.36 1.284-1.44.436-1.08.668-2.28.668-3.55 0-1.27-.232-2.47-.668-3.55-.436-1.08-.739-1.44-1.284-1.44z"/>
                     </svg>
@@ -169,29 +170,29 @@
 
         // Simple Fade-in animation (pour les éléments avec animate-fade-in-up)
         // Ceci est très basique, pour des animations plus avancées, utilisez une librairie JS comme AOS ou un framework
-        const faders = document.querySelectorAll('.animate-fade-in-up');
-        const appearOptions = {
-            threshold: 0.2, // Apparaît quand 20% de l'élément est visible
-            rootMargin: "0px 0px -50px 0px" // Déclenchement 50px avant d'atteindre le bas de la vue
-        };
+        // const faders = document.querySelectorAll('.animate-fade-in-up');
+        // const appearOptions = {
+        //     threshold: 0.2, // Apparaît quand 20% de l'élément est visible
+        //     rootMargin: "0px 0px -50px 0px" // Déclenchement 50px avant d'atteindre le bas de la vue
+        // };
 
-        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    return;
-                } else {
-                    entry.target.classList.add('is-visible');
-                    appearOnScroll.unobserve(entry.target);
-                }
-            });
-        }, appearOptions);
+        // const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+        //     entries.forEach(entry => {
+        //         if (!entry.isIntersecting) {
+        //             return;
+        //         } else {
+        //             entry.target.classList.add('is-visible');
+        //             appearOnScroll.unobserve(entry.target);
+        //         }
+        //     });
+        // }, appearOptions);
 
-        faders.forEach(fader => {
-            fader.style.opacity = '0'; // Assurez-vous que les éléments sont cachés au début
-            fader.style.transform = 'translateY(20px)'; // Décalage initial
-            fader.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-            appearOnScroll.observe(fader);
-        });
+        // faders.forEach(fader => {
+        //     fader.style.opacity = '0'; // Assurez-vous que les éléments sont cachés au début
+        //     fader.style.transform = 'translateY(20px)'; // Décalage initial
+        //     fader.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        //     appearOnScroll.observe(fader);
+        // });
 
         // Ajoutez ces styles directement dans un fichier CSS ou dans une balise <style> si vous ne voulez pas les gérer via JS
         // C'est préférable d'avoir ces règles CSS compilées par Tailwind si possible.
