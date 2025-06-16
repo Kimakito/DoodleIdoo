@@ -6,7 +6,7 @@ exports.handler = async function(event, context) {
   const instagramUserId = process.env.INSTAGRAM_USER_ID;
   const accessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
 
-  const url = `https://graph.facebook.com/v19.0/${instagramUserId}/media?fields=id,caption,media_url,permalink,timestamp&access_token=${accessToken}`;
+  const url = `https://graph.facebook.com/v19.0/${instagramUserId}/media?fields=id,caption,media_url,permalink,timestamp,media_type&access_token=${accessToken}`;
 
   try {
     const response = await fetch(url);
