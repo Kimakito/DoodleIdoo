@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  presets: [require('@netlify/tailwind-config')],
   content: [
     './*.html', // Assurez-vous que Tailwind scanne vos fichiers HTML
     // Ajoutez d'autres chemins si vous avez des fichiers JS/TS (ex: './src/**/*.{js,ts,jsx,tsx}')
