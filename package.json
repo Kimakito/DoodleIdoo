@@ -4,7 +4,7 @@
   "description": "",
   "main": "tailwind.config.js",
   "scripts": {
-    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css"  
+    "build": "tailwindcss build -i ./src/input.css -o ./output.css"
   },
   "repository": {
     "type": "git",
@@ -19,12 +19,9 @@
   },
   "homepage": "https://github.com/Kimakito/DoodleIdoo#readme",
   "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.5",
     "tailwindcss": "^4.1.10"
   },
   "dependencies": {
-    "@netlify/tailwind-config": "^2.1.0",
     "browserslist": "^4.25.0",
     "caniuse-lite": "^1.0.30001723",
     "dotenv": "^16.5.0",

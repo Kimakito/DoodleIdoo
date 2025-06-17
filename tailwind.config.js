@@ -1,9 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  presets: [require('@netlify/tailwind-config')],
   content: [
-    "./src/**/*.{html,js,css}",
-    '*.{html,js,css}',
+    "./**/*.{html,js,css}",
+    "./src/**/*.{js,css}",
   ],
   theme: {
     extend: {
