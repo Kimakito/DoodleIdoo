@@ -1,238 +1,541 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DoodleIdoo | Portfolio Créatif</title>
-    <link rel="stylesheet" href="output.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/logo_doodleIdoo.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="./assets/logo_doodleIdoo.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="./assets/logo_doodleIdoo.ico">
-<link rel="mask-icon" href="./assets/logo_doodleIdoo.ico" color="#5bbad5">
-<meta name="msapplication-TileImage" content="./assets/logo_doodleIdoo.ico">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff">
-<link rel="manifest" href="./assets/site.webmanifest">        </head>
-<body class="font-sans text-white bg-darkviolet-900">
-
-<header id="home" class="hero-section h-screen flex items-center justify-center text-center parallax-bg">
-    <div class="hero-overlay"></div>
-    <div class="relative z-10 p-8 max-w-4xl mx-auto">
-        <h1 class="text-6xl md:text-8xl font-extrabold leading-tight text-white drop-shadow-lg animate-fade-in-up">
-            <span class="block">L'Art prend vie.</span>
-            <span class="block text-contrastyellow-400 mt-4">Votre Univers Créatif.</span>
-        </h1>
-        <p class="mt-8 text-xl md:text-2xl text-darkviolet-200 drop-shadow-md animate-fade-in-up delay-200">
-            Explorez des œuvres uniques qui éveillent les sens et racontent des histoires.
-        </p>
-        <a href="#portfolio" class="mt-12 inline-block bg-contrastyellow-500 text-darkviolet-500 font-bold py-4 px-10 rounded-full text-lg uppercase tracking-wider transition-all duration-300 hover:bg-white hover:scale-105 shadow-lg animate-fade-in-up delay-400">
-            Découvrir le Portfolio
+    <link rel="stylesheet" href="output.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/logo_doodleIdoo.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/logo_doodleIdoo.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/logo_doodleIdoo.ico" />
+    <link rel="mask-icon" href="./assets/logo_doodleIdoo.ico" color="#5bbad5" />
+    <meta name="msapplication-TileImage" content="./assets/logo_doodleIdoo.ico" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="/assets/icomoon/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;800&family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet" />
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  </head>
+  <body class="font-k2d text-white bg-darkviolet-900 overflow-x-hidden">
+    
+    <nav class="fixed w-full top-0 z-50 bg-darkviolet-900/80 backdrop-blur-sm shadow-lg transition-all duration-300 py-4" id="navbar">
+      <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <a href="#home" class="flex items-center space-x-2">
+          <img src="./assets/logo_doodleIdoo.ico" alt="DoodleIdoo Logo" class="h-10 w-auto">
+          <span class="text-2xl font-extrabold text-contrastyellow-400">DoodleIdoo</span>
         </a>
-    </div>
-</header>
-<div id="instagram-feed" class="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto py-12"></div>
-<script>
- fetch('/.netlify/functions/getInstagram')
-  .then(res => res.json())
-  .then(data => {
-    const container = document.getElementById('instagram-feed');
-    data.data.forEach(post => {
-      if (post.media_type === 'IMAGE' || post.media_type === 'CAROUSEL_ALBUM' || post.media_type === 'VIDEO' || post.media_type === 'REEL') {
-        const a = document.createElement('a');
-        a.href = post.permalink; // lien vers le post Instagram
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        a.classList.add('flex', 'flex-col', 'items-center', 'max-w-xs'); // organise verticalement avec centrage et max width
+        <div class="hidden md:flex space-x-8">
+          <a href="#home" class="text-darkviolet-200 hover:text-contrastyellow-400 transition-colors duration-200 text-lg font-bold">Accueil</a>
+          <a href="#portfolio" class="text-darkviolet-200 hover:text-contrastyellow-400 transition-colors duration-200 text-lg font-bold">Portfolio</a>
+          <a href="#about" class="text-darkviolet-200 hover:text-contrastyellow-400 transition-colors duration-200 text-lg font-bold">À Propos</a>
+          <a href="#contact" class="text-darkviolet-200 hover:text-contrastyellow-400 transition-colors duration-200 text-lg font-bold">Contact</a>
+        </div>
+        <button id="mobile-menu-button" class="md:hidden text-darkviolet-200 hover:text-contrastyellow-400 focus:outline-none focus:text-contrastyellow-400">
+          <span class="icon-menu text-3xl"></span>
+        </button>
+      </div>
+      <div id="mobile-menu" class="hidden md:hidden bg-darkviolet-900/95 pt-4 pb-2">
+        <a href="#home" class="block py-2 px-6 text-darkviolet-100 hover:bg-darkviolet-800 hover:text-contrastyellow-400 transition-colors duration-200 text-center text-lg font-bold">Accueil</a>
+        <a href="#portfolio" class="block py-2 px-6 text-darkviolet-100 hover:bg-darkviolet-800 hover:text-contrastyellow-400 transition-colors duration-200 text-center text-lg font-bold">Portfolio</a>
+        <a href="#about" class="block py-2 px-6 text-darkviolet-100 hover:bg-darkviolet-800 hover:text-contrastyellow-400 transition-colors duration-200 text-center text-lg font-bold">À Propos</a>
+        <a href="#contact" class="block py-2 px-6 text-darkviolet-100 hover:bg-darkviolet-800 hover:text-contrastyellow-400 transition-colors duration-200 text-center text-lg font-bold">Contact</a>
+      </div>
+    </nav>
 
-        let mediaElement;
-        if (post.media_type === 'IMAGE' || post.media_type === 'CAROUSEL_ALBUM') {
-          mediaElement = document.createElement('img');
-          mediaElement.src = post.media_url;
-          mediaElement.alt = post.caption || "";
-        } else {
-          mediaElement = document.createElement('video');
-          mediaElement.src = post.media_url;
-          mediaElement.controls = true;
-        }
+    <header
+      id="home"
+      class="relative flex flex-col items-center justify-center text-center min-h-screen overflow-hidden pt-20"
+    >
+      <div class="absolute inset-0 bg-gradient-to-br from-darkviolet-900 via-darkviolet-800 to-darkviolet-700 opacity-90 animate-bg-pan"></div>
+      <div class="absolute inset-0 bg-cover bg-center opacity-10 parallax-bg" style="background-image: url('./assets/images/bg_drawing_pattern.png');"></div> 
+      <div class="hero-overlay absolute inset-0 bg-black opacity-30"></div>
 
-        mediaElement.classList.add('w-48', 'rounded-lg', 'shadow-lg', 'hover:scale-105', 'transition-transform', 'duration-300');
-        a.appendChild(mediaElement);
+      <div class="relative z-10 p-8 max-w-5xl mx-auto flex flex-col items-center justify-center">
+        <h1
+          class="text-6xl sm:text-7xl md:text-8xl font-extrabold leading-tight text-white drop-shadow-2xl animate-fade-in-up animation-delay-0"
+          data-aos="fade-up" data-aos-duration="1000"
+        >
+          <span class="block">DoodleIdoo</span>
+          <span class="block text-contrastyellow-400 mt-4 relative after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-1.5 after:bg-contrastyellow-500 after:rounded-full after:transition-all after:duration-500 hover:after:w-full"
+            >Mon Univers Créatif.</span
+          >
+        </h1>
+        
+        <div id="drawing-animation-container" class="w-full max-w-xl mx-auto h-auto flex justify-center items-center mt-12 mb-8"
+             data-aos="zoom-in" data-aos-delay="600" data-aos-duration="1500">
+          </div>
+        
+        <p
+          class="mt-8 text-xl md:text-2xl text-darkviolet-200 drop-shadow-md animate-fade-in-up animation-delay-200"
+          data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000"
+        >
+          Explorez des œuvres uniques qui éveillent les sens et racontent des
+          histoires.
+        </p>
+        <a
+          href="#portfolio"
+          class="mt-12 inline-block bg-contrastyellow-500 text-darkviolet-900 font-bold py-4 px-10 rounded-full text-lg uppercase tracking-wider transition-all duration-300 hover:bg-white hover:scale-105 shadow-2xl animate-fade-in-up animation-delay-400"
+          data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000"
+        >
+          Découvrir le Portfolio
+        </a>
+      </div>
+    </header>
 
-        // Créer un élément pour la description
-        if (post.caption && post.caption.trim() !== '') {
-          const caption = document.createElement('p');
-          caption.textContent = post.caption.length > 100 ? post.caption.slice(0, 100) + '...' : post.caption; // tronque si trop long
-          caption.classList.add('mt-2', 'text-center', 'text-sm', 'text-gray-700');
-          a.appendChild(caption);
-        }
+    <section id="instagram-feed-section" class="py-24 bg-darkviolet-900" data-aos="fade-up">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-12 text-contrastyellow-400" data-aos="fade-down" data-aos-delay="100">
+          En direct d'Instagram
+        </h2>
+        <div id="instagram-feed-loading" class="text-contrastyellow-200 text-lg mb-8" style="display: none;">
+            Chargement des publications... <span class="icon-spinner animate-spin ml-2"></span>
+        </div>
+        <div id="instagram-feed-error" class="text-red-500 text-lg mb-8" style="display: none;">
+            Impossible de charger le flux Instagram. Veuillez réessayer plus tard.
+        </div>
+        <div
+          id="instagram-feed"
+          class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center"
+        >
+          </div>
+        <a href="https://www.instagram.com/doodleidoo_73" target="_blank" rel="noopener noreferrer" 
+           class="mt-12 inline-flex items-center bg-contrastyellow-500 text-darkviolet-900 font-bold py-3 px-8 rounded-full text-md uppercase tracking-wider transition-all duration-300 hover:bg-white hover:scale-105 shadow-lg"
+           data-aos="zoom-in" data-aos-delay="200">
+            Voir plus sur Instagram <span class="icon-instagram ml-2 text-lg"></span>
+        </a>
+      </div>
+    </section>
 
-        container.appendChild(a);
-      }
-    });
-  })
-  .catch(err => console.error("Erreur API Instagram :", err));
+    <section id="portfolio" class="py-24 bg-darkviolet-500 text-center" data-aos="fade-up">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-5xl font-bold mb-16 text-contrastyellow-500" data-aos="fade-down">
+          Mes Dernières Créations & Mon Univers
+        </h2>
 
-</script>
-    <section id="portfolio" class="py-24 bg-darkviolet-500 text-center">
-    <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-5xl font-bold mb-16 text-contrastyellow-500">Mes Dernières Créations & Mon Univers</h2>
-
-        <div class="mb-16 flex justify-center space-x-8">
-            <a href="https://www.instagram.com/doodleidoo_73" target="_blank" rel="noopener noreferrer" class="text-darkviolet-200 hover:text-white transition-colors duration-300 transform hover:scale-110">
-                <img src="./assets/logo_doodleIdoo.png" alt="logo_doodleIdoo">
-                <span class="sr-only">Instagram</span>
-            </a>
-            <a href="https://www.tiktok.com/doodleidoo" target="_blank" rel="noopener noreferrer" class="text-darkviolet-200 hover:text-white transition-colors duration-300 transform hover:scale-110">
-                <img src="./assets/logo_doodleIdoo.png" class="w-5" alt="logo_doodleIdoo">
-                <span class="sr-only">Tiktok</span>
-            </a>
+        <div class="mb-16 flex justify-center gap-10" data-aos="fade-in" data-aos-delay="200">
+          <a
+            href="https://www.instagram.com/doodleidoo_73"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group text-darkviolet-200 hover:text-white transition-colors duration-300 transform hover:scale-110 flex flex-col items-center justify-center p-3 rounded-full bg-darkviolet-800 hover:bg-contrastyellow-500 shadow-lg relative overflow-hidden"
+          >
+            <span class="icon-instagram text-3xl md:text-4xl group-hover:text-darkviolet-900 transition-transform duration-300 group-hover:rotate-[360deg]"></span>
+            <span class="sr-only">Instagram</span>
+            <span class="absolute inset-0 bg-contrastyellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-0 group-hover:scale-100 rounded-full -z-10"></span>
+          </a>
+          <a
+            href="https://www.tiktok.com/doodleidoo"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group text-darkviolet-200 hover:text-white transition-colors duration-300 transform hover:scale-110 flex flex-col items-center justify-center p-3 rounded-full bg-darkviolet-800 hover:bg-contrastyellow-500 shadow-lg relative overflow-hidden"
+          >
+            <span class="icon-tik-tok text-3xl md:text-4xl group-hover:text-darkviolet-900 transition-transform duration-300 group-hover:rotate-[360deg]"></span>
+            <span class="sr-only">TikTok</span>
+            <span class="absolute inset-0 bg-contrastyellow-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-0 group-hover:scale-100 rounded-full -z-10"></span>
+          </a>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-darkviolet-900 rounded-lg shadow-xl overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
-                <img src="./assets/images/bg_drawing.jpg" alt="Nom de l'œuvre 1" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-semibold mb-2 text-contrastyellow-500">Explosion Cosmique</h3>
-                    <p class="text-darkviolet-200 text-base">
-                        Peinture acrylique sur toile, inspirée par les nébuleuses lointaines et les rêves éveillés.
-                    </p>
-                    <a href="#" class="mt-4 inline-block text-contrastyellow-500 hover:text-white font-medium transition-colors duration-300">
-                        Voir sur Instagram &rarr;
-                    </a>
-                </div>
+          <div
+            class="relative bg-darkviolet-900 rounded-xl shadow-xl overflow-hidden group transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl"
+            data-aos="fade-up" data-aos-delay="100"
+          >
+            <img
+              src="./assets/images/bg_drawing.jpg" alt="Explosion Cosmique"
+              class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110"
+            />
+            <div class="p-6 text-left">
+              <h3 class="text-2xl font-semibold mb-2 text-contrastyellow-400">
+                Explosion Cosmique
+              </h3>
+              <p class="text-darkviolet-200 text-base mb-4">
+                Peinture acrylique sur toile, inspirée par les nébuleuses
+                lointaines et les rêves éveillés.
+              </p>
+              <a
+                href="#" class="inline-flex items-center text-contrastyellow-500 hover:text-white font-medium transition-colors duration-300 group-hover:translate-x-1"
+              >
+                Voir sur Instagram
+                <span class="icon-arrow-right ml-2 text-sm transition-transform duration-300 group-hover:translate-x-1"></span>
+              </a>
             </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-darkviolet-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                </div>
+          </div>
 
-            <div class="bg-darkviolet-900 rounded-lg shadow-xl overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
-                <img src="./assets/images/bg_drawing.jpg" alt="Nom de l'œuvre 2" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-semibold mb-2 text-contrastyellow-500">Harmonie Digitale</h3>
-                    <p class="text-darkviolet-200 text-base">
-                        Création numérique, explorant les formes géométriques et les dégradés de lumière.
-                    </p>
-                    <a href="#" class="mt-4 inline-block text-contrastyellow-500 hover:text-white font-medium transition-colors duration-300">
-                        Voir sur TikTok &rarr;
-                    </a>
-                </div>
+          <div
+            class="relative bg-darkviolet-900 rounded-xl shadow-xl overflow-hidden group transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl"
+            data-aos="fade-up" data-aos-delay="200"
+          >
+            <img
+              src="./assets/images/bg_drawing.jpg" alt="Harmonie Digitale"
+              class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110"
+            />
+            <div class="p-6 text-left">
+              <h3 class="text-2xl font-semibold mb-2 text-contrastyellow-400">
+                Harmonie Digitale
+              </h3>
+              <p class="text-darkviolet-200 text-base mb-4">
+                Création numérique, explorant les formes géométriques et les
+                dégradés de lumière.
+              </p>
+              <a
+                href="#" class="inline-flex items-center text-contrastyellow-500 hover:text-white font-medium transition-colors duration-300 group-hover:translate-x-1"
+              >
+                Voir sur TikTok
+                <span class="icon-arrow-right ml-2 text-sm transition-transform duration-300 group-hover:translate-x-1"></span>
+              </a>
             </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-darkviolet-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"></div>
+          </div>
 
-            <div class="bg-darkviolet-900 rounded-lg shadow-xl overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
-                <img src="./assets/images/bg_drawing.jpg" alt="Nom de l'œuvre 3" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <h3 class="text-2xl font-semibold mb-2 text-contrastyellow-500">Silhouettes Oubliées</h3>
-                    <p class="text-darkviolet-200 text-base">
-                        Sculpture en argile polymère, un hommage à l'éphémère beauté de la nature.
-                    </p>
-                    <a href="#" class="mt-4 inline-block text-contrastyellow-500 hover:text-white font-medium transition-colors duration-300">
-                        Voir plus &rarr;
-                    </a>
-                </div>
+          <div
+            class="relative bg-darkviolet-900 rounded-xl shadow-xl overflow-hidden group transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl"
+            data-aos="fade-up" data-aos-delay="300"
+          >
+            <img
+              src="./assets/images/bg_drawing.jpg" alt="Silhouettes Oubliées"
+              class="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110"
+            />
+            <div class="p-6 text-left">
+              <h3 class="text-2xl font-semibold mb-2 text-contrastyellow-400">
+                Silhouettes Oubliées
+              </h3>
+              <p class="text-darkviolet-200 text-base mb-4">
+                Sculpture en argile polymère, un hommage à l'éphémère beauté de
+                la nature.
+              </p>
+              <a
+                href="#" class="inline-flex items-center text-contrastyellow-500 hover:text-white font-medium transition-colors duration-300 group-hover:translate-x-1"
+              >
+                Voir plus <span class="icon-arrow-right ml-2 text-sm transition-transform duration-300 group-hover:translate-x-1"></span>
+              </a>
             </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-darkviolet-900/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6"></div>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<section id="unknown-content" class="py-24 bg-darkviolet-900 text-center">
-    <div class="max-w-4xl mx-auto px-6">
-        <h2 class="text-5xl font-bold mb-12 text-white">L'Art comme Connexion</h2>
-        <p class="text-xl text-darkviolet-200 leading-relaxed mb-12">
-            Chaque œuvre est une porte ouverte sur une nouvelle émotion. Laissez-vous transporter par des créations qui résonnent avec votre âme. C'est ici que je partage mes inspirations, mon processus, et les histoires derrière chaque pièce.
-        </p>
-        <blockquote class="text-2xl italic font-serif text-contrastyellow-500 mb-8">
+    <section id="about" class="py-24 bg-darkviolet-900" data-aos="fade-up">
+      <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+        <div class="text-left" data-aos="fade-right" data-aos-delay="100">
+          <h2 class="text-5xl font-bold mb-8 text-white">L'Art, une Connexion Profonde</h2>
+          <p class="text-xl text-darkviolet-200 leading-relaxed mb-8 font-jakarta">
+            Chaque œuvre que je crée est plus qu'une simple image ou sculpture ; c'est une porte ouverte sur une nouvelle émotion, une histoire silencieuse qui attend d'être découverte. Je crois que l'art est un pont entre l'invisible et le tangible, invitant chacun à une réflexion intime.
+          </p>
+          <blockquote class="relative pl-6 border-l-4 border-contrastyellow-500 text-2xl italic font-serif text-contrastyellow-400 mb-8 font-jakarta">
             "L'art lave notre âme de la poussière du quotidien."
-        </blockquote>
-        <p class="text-lg text-darkviolet-200">
-            N'hésitez pas à me contacter pour toute question ou commande personnalisée.
-        </p>
-    </div>
-</section>
+            <footer class="mt-2 text-lg text-darkviolet-300 not-italic">- Pablo Picasso</footer>
+          </blockquote>
+          <p class="text-lg text-darkviolet-200 font-jakarta">
+            Découvrez comment mes inspirations se transforment en créations uniques.
+          </p>
+        </div>
+        <div class="relative flex justify-center items-center" data-aos="fade-left" data-aos-delay="200">
+            <img src="./assets/images/placeholder_art.jpg" alt="Artwork showcasing the philosophy" class="rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-500 max-w-full h-auto">
+            <div class="absolute inset-0 border-4 border-contrastyellow-500 rounded-xl opacity-0 hover:opacity-100 transition-opacity duration-500 animate-pulse-light"></div>
+        </div>
+      </div>
+    </section>
 
-<section id="contact" class="py-24 bg-darkviolet-500 text-center">
-    <div class="max-w-2xl mx-auto px-6">
-        <h2 class="text-5xl font-bold mb-12 text-contrastyellow-500">Contactez-moi</h2>
-        <p class="text-xl text-darkviolet-200 mb-12">
-            Des questions sur une œuvre, une idée de collaboration, ou simplement un mot doux ? Écrivez-moi !
+    <section id="contact" class="py-24 bg-darkviolet-500 text-center" data-aos="fade-up">
+      <div class="max-w-2xl mx-auto px-6">
+        <h2 class="text-5xl font-bold mb-12 text-contrastyellow-500" data-aos="fade-down">
+          Contactez-moi
+        </h2>
+        <p class="text-xl text-darkviolet-200 mb-12 font-jakarta" data-aos="fade-up" data-aos-delay="100">
+          Des questions sur une œuvre, une idée de collaboration, ou simplement
+          un mot doux ? Écrivez-moi !
         </p>
 
-        <form data-netlify="true" name="contact" method="POST" class="bg-darkviolet-900 p-8 rounded-lg shadow-xl border-t-4 border-contrastyellow-500">
-            <div class="mb-6 text-left">
-                <label for="name" class="block text-darkviolet-200 text-lg font-medium mb-2">Votre Nom</label>
-                <input type="text" id="name" name="name" required
-                       class="w-full p-4 rounded-md bg-darkviolet-900 border-2 border-darkviolet-500 focus:border-contrastyellow-500 text-white placeholder-darkviolet-400 transition-colors duration-300">
-            </div>
-            <div class="mb-6 text-left">
-                <label for="email" class="block text-darkviolet-200 text-lg font-medium mb-2">Votre Email</label>
-                <input type="email" id="email" name="email" required
-                       class="w-full p-4 rounded-md bg-darkviolet-900 border-2 border-darkviolet-500 focus:border-contrastyellow-500 text-white placeholder-darkviolet-400 transition-colors duration-300">
-            </div>
-            <div class="mb-6 text-left">
-                <label for="message" class="block text-darkviolet-200 text-lg font-medium mb-2">Votre Message</label>
-                <textarea id="message" name="message" rows="5" required
-                          class="w-full p-4 rounded-md bg-darkviolet-900 border-2 border-darkviolet-500 focus:border-contrastyellow-500 text-white placeholder-darkviolet-400 transition-colors duration-300"></textarea>
-            </div>
-            <button type="submit" class="bg-contrastyellow-500 text-darkviolet-900 font-bold py-4 px-12 rounded-full uppercase tracking-wider hover:bg-contrastyellow-600 transition-colors duration-300 shadow-lg">
-                Envoyer
-            </button>
+        <form
+          data-netlify="true"
+          name="contact"
+          method="POST"
+          class="bg-darkviolet-900 p-8 rounded-lg shadow-xl border-t-8 border-contrastyellow-500"
+          data-aos="zoom-in" data-aos-delay="200"
+        >
+          <div class="mb-6 text-left">
+            <label
+              for="name"
+              class="block text-darkviolet-200 text-lg font-jakarta font-medium mb-2"
+              >Votre Nom</label
+            >
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              class="w-full p-4 rounded-md bg-darkviolet-900 border-2 border-darkviolet-500 focus:border-contrastyellow-500 text-white placeholder-darkviolet-400 transition-all duration-300 focus:ring-2 focus:ring-contrastyellow-500"
+            />
+          </div>
+          <div class="mb-6 text-left">
+            <label
+              for="email"
+              class="block text-darkviolet-200 text-lg font-jakarta font-medium mb-2"
+              >Votre Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full p-4 rounded-md bg-darkviolet-900 border-2 border-darkviolet-500 focus:border-contrastyellow-500 text-white placeholder-darkviolet-400 transition-all duration-300 focus:ring-2 focus:ring-contrastyellow-500"
+            />
+          </div>
+          <div class="mb-6 text-left">
+            <label
+              for="message"
+              class="block text-darkviolet-200 text-lg font-jakarta font-medium mb-2"
+              >Votre Message</label
+            >
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              required
+              class="w-full p-4 rounded-md bg-darkviolet-900 border-2 border-darkviolet-500 focus:border-contrastyellow-500 text-white placeholder-darkviolet-400 transition-all duration-300 focus:ring-2 focus:ring-contrastyellow-500"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="bg-contrastyellow-500 text-darkviolet-900 font-bold py-4 px-12 rounded-full uppercase tracking-wider hover:bg-contrastyellow-600 transition-colors duration-300 shadow-lg transform hover:-translate-y-1"
+          >
+            Envoyer
+          </button>
         </form>
-    </div>
-</section>
+      </div>
+    </section>
 
-<footer class="bg-darkviolet-800 py-12 text-center text-darkviolet-200">
-    <p>&copy; 2025 Doodleidoo. Tous droits réservés.</p>
-</footer>
+    <footer class="bg-darkviolet-800 py-12 text-center text-darkviolet-200">
+      <p class="font-jakarta">&copy; 2025 Doodleidoo. Tous droits réservés.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        once: true, // Only animate elements once as they enter the viewport
+        duration: 1000, // Animation duration
+        easing: 'ease-out-quad', // Easing function
+      });
+    </script>
 
     <script>
-        // Smooth scrolling pour les liens d'ancrage
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+      // ------------------------------------------
+      // 1. Navigation
+      // ------------------------------------------
+      const navbar = document.getElementById('navbar');
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      // Sticky Navbar on scroll
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('py-3', 'shadow-xl');
+          navbar.classList.remove('py-4', 'shadow-lg');
+        } else {
+          navbar.classList.add('py-4', 'shadow-lg');
+          navbar.classList.remove('py-3', 'shadow-xl');
+        }
+      });
+
+      // Toggle mobile menu
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Hide mobile menu when a link is clicked
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
         });
+      });
 
-        // Simple Fade-in animation (pour les éléments avec animate-fade-in-up)
-        // Ceci est très basique, pour des animations plus avancées, utilisez une librairie JS comme AOS ou un framework
-        // const faders = document.querySelectorAll('.animate-fade-in-up');
-        // const appearOptions = {
-        //     threshold: 0.2, // Apparaît quand 20% de l'élément est visible
-        //     rootMargin: "0px 0px -50px 0px" // Déclenchement 50px avant d'atteindre le bas de la vue
-        // };
+      // Smooth scrolling for anchor links (kept from your original code)
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
 
-        // const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
-        //     entries.forEach(entry => {
-        //         if (!entry.isIntersecting) {
-        //             return;
-        //         } else {
-        //             entry.target.classList.add('is-visible');
-        //             appearOnScroll.unobserve(entry.target);
-        //         }
-        //     });
-        // }, appearOptions);
-
-        // faders.forEach(fader => {
-        //     fader.style.opacity = '0'; // Assurez-vous que les éléments sont cachés au début
-        //     fader.style.transform = 'translateY(20px)'; // Décalage initial
-        //     fader.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-        //     appearOnScroll.observe(fader);
-        // });
-
-        // Ajoutez ces styles directement dans un fichier CSS ou dans une balise <style> si vous ne voulez pas les gérer via JS
-        // C'est préférable d'avoir ces règles CSS compilées par Tailwind si possible.
-        /*
-        .animate-fade-in-up {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      // ------------------------------------------
+      // 2. Parallax Effect for Background
+      // ------------------------------------------
+      window.addEventListener('scroll', () => {
+        const parallaxBg = document.querySelector('.parallax-bg');
+        if (parallaxBg) {
+          const scrollPosition = window.pageYOffset;
+          parallaxBg.style.transform = `translateY(${scrollPosition * 0.3}px)`; // Adjust 0.3 for more/less effect
         }
-        .animate-fade-in-up.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .animate-fade-in-up.delay-200 { transition-delay: 0.2s; }
-        .animate-fade-in-up.delay-400 { transition-delay: 0.4s; }
-        */
+      });
 
+      // ------------------------------------------
+      // 3. SVG Drawing Animation
+      // Note: Assurez-vous que votre network.svg a des attributs 'stroke' et 'fill="none"' !
+      // ------------------------------------------
+      document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('drawing-animation-container');
+
+        fetch('./assets/images/network.svg') // Assurez-vous que le chemin est correct
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.text();
+          })
+          .then(svgText => {
+            container.innerHTML = svgText;
+            const svg = container.querySelector('svg');
+
+            if (!svg) {
+              console.error("Erreur : Aucun élément <svg> trouvé après l'injection.");
+              container.innerHTML = '<p class="text-red-500 text-center">Le fichier SVG est vide ou mal formé.</p>';
+              return;
+            }
+
+            // Applique la couleur de trait principale à l'ensemble du SVG
+            // (peut être défini dans le CSS aussi pour les cas où le SVG n'est pas injecté par JS)
+            svg.style.stroke = 'var(--contrastyellow-400, #E6B500)'; 
+            svg.style.fill = 'none'; // Assurez-vous qu'il n'y a pas de remplissage par défaut
+
+            const paths = svg.querySelectorAll('path, line, polyline');
+            if (paths.length === 0) {
+              console.warn("Aucun chemin de dessin détecté dans le SVG. Vérifiez votre vectorisation.");
+              return;
+            }
+
+            paths.forEach((path, index) => {
+              const length = path.getTotalLength();
+              if (length === 0) {
+                  console.warn(`Chemin ${index} a une longueur de 0 et ne sera pas animé.`);
+                  return;
+              }
+              path.style.strokeDasharray = length;
+              path.style.strokeDashoffset = length;
+              path.style.setProperty('--initial-dashoffset', length);
+              
+              // Applique les animations de dessin et de fondu
+              path.classList.add('drawing-path');
+              // Calcule un délai pour une animation séquentielle plus naturelle
+              path.style.animationDelay = `${index * 0.05}s`; // Ajustez 0.05s si vous voulez plus rapide/lent
+              path.style.animationFillMode = 'forwards';
+            });
+          })
+          .catch(error => {
+            console.error("Erreur lors du chargement ou du traitement du SVG :", error);
+            container.innerHTML = '<p class="text-red-500 text-center">Impossible de charger le dessin animé. Vérifiez la console pour plus de détails.</p>';
+          });
+      });
+
+      // ------------------------------------------
+      // 4. Instagram Feed Script (amélioré)
+      // ------------------------------------------
+      document.addEventListener('DOMContentLoaded', () => {
+        const instagramFeedContainer = document.getElementById("instagram-feed");
+        const loadingMessage = document.getElementById("instagram-feed-loading");
+        const errorMessage = document.getElementById("instagram-feed-error");
+
+        loadingMessage.style.display = 'block'; // Show loading message
+        instagramFeedContainer.innerHTML = ''; // Clear previous content
+
+        fetch("/.netlify/functions/getInstagram")
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json();
+          })
+          .then((data) => {
+            loadingMessage.style.display = 'none'; // Hide loading
+            if (data && data.data && Array.isArray(data.data)) {
+              data.data.forEach((post) => {
+                if (
+                  post.media_type === "IMAGE" ||
+                  post.media_type === "CAROUSEL_ALBUM" ||
+                  post.media_type === "VIDEO" ||
+                  post.media_type === "REEL"
+                ) {
+                  const a = document.createElement("a");
+                  a.href = post.permalink;
+                  a.target = "_blank";
+                  a.rel = "noopener noreferrer";
+                  a.classList.add(
+                    "block", "relative", "w-full", "pt-[100%]", // 1:1 aspect ratio
+                    "overflow-hidden", "rounded-lg", "shadow-lg", "group", 
+                    "transform", "transition-all", "duration-300", 
+                    "hover:scale-[1.03]", "hover:shadow-xl",
+                    "hover:ring-4", "hover:ring-contrastyellow-500" // New hover effect
+                  );
+
+                  let mediaElement;
+                  if (post.media_type === "IMAGE" || post.media_type === "CAROUSEL_ALBUM") {
+                    mediaElement = document.createElement("img");
+                    mediaElement.src = post.media_url;
+                    mediaElement.alt = post.caption || "Instagram Post";
+                  } else {
+                    mediaElement = document.createElement("video");
+                    mediaElement.src = post.media_url;
+                    mediaElement.controls = false;
+                    mediaElement.muted = true;
+                    mediaElement.loop = true;
+                    mediaElement.preload = "auto";
+                    // Play/pause video on hover
+                    a.addEventListener('mouseenter', () => mediaElement.play().catch(e => console.log("Video play blocked:", e)));
+                    a.addEventListener('mouseleave', () => mediaElement.pause());
+                    // Add play icon for videos/reels
+                    const playIcon = document.createElement('span');
+                    playIcon.classList.add('icon-play', 'absolute', 'inset-0', 'flex', 'items-center', 'justify-center', 'text-white/80', 'text-6xl', 'opacity-0', 'group-hover:opacity-100', 'transition-opacity', 'duration-300');
+                    a.appendChild(playIcon);
+                  }
+
+                  mediaElement.classList.add(
+                    "absolute", "inset-0", "w-full", "h-full", 
+                    "object-cover", "transition-transform", "duration-300", 
+                    "group-hover:scale-110"
+                  );
+                  a.appendChild(mediaElement);
+
+                  const overlay = document.createElement('div');
+                  overlay.classList.add(
+                    "absolute", "inset-0", "bg-gradient-to-t", 
+                    "from-darkviolet-900/70", "to-transparent", "flex", 
+                    "items-end", "p-4", "opacity-0", 
+                    "group-hover:opacity-100", "transition-opacity", "duration-300"
+                  );
+
+                  if (post.caption && post.caption.trim() !== "") {
+                    const caption = document.createElement("p");
+                    caption.textContent =
+                      post.caption.length > 80
+                        ? post.caption.slice(0, 80) + "..."
+                        : post.caption;
+                    caption.classList.add(
+                      "text-white", "text-sm", "font-jakarta", "leading-tight"
+                    );
+                    overlay.appendChild(caption);
+                  }
+                  a.appendChild(overlay);
+                  instagramFeedContainer.appendChild(a);
+                }
+              });
+            } else {
+              errorMessage.style.display = 'block'; // Show error
+              console.error("Instagram API response data is not an array:", data);
+            }
+          })
+          .catch((err) => {
+            loadingMessage.style.display = 'none'; // Hide loading
+            errorMessage.style.display = 'block'; // Show error
+            console.error("Erreur API Instagram :", err);
+          });
+      });
     </script>
-</body>
+  </body>
 </html>

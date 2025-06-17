@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private-pages/
+Disallow: /temp-files.html
+
+Sitemap: https://doodleidoo.fr/sitemap.xml
