@@ -1,9 +1,9 @@
 [build]  
   command = "npm install && CI=1 npm run build"
   functions = "netlify/functions"
-  publish = "dist"
+  publish = "."
 
 [dev]
   functions = "netlify/functions"
-  publish = "dist"
+  publish = "."
   port = 8888
